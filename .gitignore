@@ -1,8 +1,7 @@
-test/.env
-gp/*
+uploads/
+outputs/
+.DS_Store
+__pycache__/
 *.pyc
-dist/*
-.idea
-venv
-test_output
-.vscode/settings.json
+*.pyo
+*.zip
