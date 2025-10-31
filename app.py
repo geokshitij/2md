@@ -1268,7 +1268,7 @@ def download_markdown(job_id):
     if not os.path.exists(markdown_path):
         return "Markdown file not found", 404
     
-    return send_file(markdown_path, as_attachment=True, download_name='output.md')
+    return send_file(markdown_path, as_attachment=True, attachment_filename='output.md')
 
 
 @app.route('/download/<job_id>/image/<image_name>')
@@ -1328,7 +1328,7 @@ def download_package(job_id):
     shutil.rmtree(package_dir)
     
     return send_file(f"{zip_path}.zip", as_attachment=True, 
-                     download_name=f'{filename}_complete.zip')
+                     attachment_filename=f'{filename}_complete.zip')
 
 
 @app.route('/download/all')
@@ -1421,7 +1421,7 @@ def download_all_pdfs():
         logging.info(f"ZIP created successfully: {zip_path}.zip")
         
         return send_file(f"{zip_path}.zip", as_attachment=True, 
-                         download_name=f'all_converted_pdfs_{processed_count}_files.zip')
+                         attachment_filename=f'all_converted_pdfs_{processed_count}_files.zip')
         
     except Exception as e:
         return f"Error creating batch download: {str(e)}", 500
