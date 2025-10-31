@@ -1022,50 +1022,16 @@ HTML_TEMPLATE = """
                 `;
                 
                 if (status.status === 'completed') {
+                    const imageCount = status.images ? status.images.length : 0;
                     html += `
                         <div style="margin-top: 20px; padding: 20px; background: #f0fff4; 
-                             border-radius: 12px; border: 2px solid #9ae6b4;">
-                            <strong style="color: #22543d; display: block; margin-bottom: 12px; font-size: 0.95em;">
-                                Download Options:
-                            </strong>
-                            <div class="download-buttons" style="display: flex; flex-direction: column; gap: 10px;">
-                                <a href="/download/${status.job_id}/package" class="btn btn-success" 
-                                   style="text-align: center; margin: 0;" download>
-                                    Complete Package (MD + Images ZIP)
-                                </a>
-                                <a href="/download/${status.job_id}/markdown" class="btn btn-info" 
-                                   style="text-align: center; margin: 0;" download>
-                                    Markdown Only
-                                </a>
-                            </div>
+                             border-radius: 12px; border: 2px solid #9ae6b4; text-align: center;">
+                            <a href="/download/${status.job_id}/package" class="btn btn-success" 
+                               style="text-align: center; margin: 0; font-size: 1em; padding: 14px 24px;">
+                                Download Package (MD + ${imageCount} Images)
+                            </a>
                         </div>
                     `;
-                    
-                    if (status.images && status.images.length > 0) {
-                        html += `<div style="margin-top: 16px; padding: 18px; background: #fafafa; 
-                                 border-radius: 12px; border: 2px solid #e2e8f0;">
-                            <strong style="color: #2d3748; font-size: 0.9em;">
-                                Intermediate Images (${status.images.length}):
-                            </strong>
-                            <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px;">`;
-                        status.images.forEach(img => {
-                            html += `
-                                <a href="/download/${status.job_id}/image/${img}" 
-                                   style="display: block; padding: 10px 8px; 
-                                   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                                   border-radius: 8px; text-decoration: none; 
-                                   color: white; font-size: 0.7em; transition: all 0.3s ease;
-                                   text-align: center; word-break: break-all;
-                                   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);"
-                                   onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 16px rgba(102,126,234,0.4)';"
-                                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)';"
-                                   download>
-                                    ${img}
-                                </a>
-                            `;
-                        });
-                        html += `</div></div>`;
-                    }
                 } else if (status.status === 'failed') {
                     html += `<div style="margin-top: 16px; padding: 16px; background: #fff5f5; 
                              border-radius: 10px; border: 2px solid #feb2b2; color: #742a2a;">
