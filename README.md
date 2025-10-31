@@ -41,11 +41,41 @@ This package use [GeneralAgent](https://github.com/CosmosShadow/GeneralAgent) li
 pip install gptpdf
 ```
 
+For the Web UI, also install Flask:
+```bash
+pip install flask
+```
+
 
 
 ## Usage
 
-### Local Usage
+### Web UI (Recommended)
+
+We provide a modern Flask-based web interface for easy PDF conversion:
+
+```bash
+# Install Flask
+pip install flask
+
+# Run the web UI
+python app.py
+```
+
+Then open your browser and navigate to `http://127.0.0.1:8080`
+
+**Features:**
+- Upload multiple PDFs simultaneously
+- Real-time progress tracking
+- Parallel processing for faster conversion
+- Download options:
+  - Complete package (Markdown + Images ZIP)
+  - Markdown only
+  - Batch download all converted PDFs
+- API key persistence (saved in browser)
+- Clean, modern, responsive UI
+
+### Local Usage (Python)
 
 ```python
 from gptpdf import parse_pdf
@@ -55,8 +85,6 @@ print(content)
 ```
 
 See more in [test/test.py](test/test.py)
-
-
 
 ### Google Colab
 
